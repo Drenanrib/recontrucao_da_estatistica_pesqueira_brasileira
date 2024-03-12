@@ -1,0 +1,93 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from openpyxl import workbook
+import numpy as np
+
+
+data = pd.read_excel('reconstrucao_estatistica_brasileira\qReconstrucaoDoceMarinho22122023 (1).xlsx')
+print(data)
+
+
+remocao = (data['Habitat'] == 'Marinho')
+df = data[remocao]
+print(df)
+df_1 = pd.DataFrame({
+    'Estado': df['Estado'],
+    'Ano': data['Ano'],
+    'Nome': data['NomeComum'],
+    'Tipo': data['Tipo'],
+    'Captura': data['Captura']})
+#df_1.to_csv('/content/drive/MyDrive/Colab Notebooks/df1.csv')
+print(df_1)
+
+
+especies= set(df_1['Nome'])
+print(especies)
+especies_list= list
+
+
+selecao1 = (df_1['Estado'] == 'Sergipe') & (df_1['Nome'] == 'Camarão (de mar)') #& (df_1['Tipo'] == 'Artesanal')
+df= df_1[selecao1]
+df.to_csv('reconstrucao_estatistica_brasileira\Sergipe_Bagre.csv')
+
+
+x0 = []
+x1 = []
+x2 = []
+
+x = list(df['Ano'])
+y = list(df['Captura'])
+z = list(df['Tipo'])
+print(x,y,z)
+
+for i,ano in enumerate(x):
+    tipo = z[i]
+    capt = y[i]
+
+    if (tipo == 'Artisanal'):
+        x1.append([ano,capt])
+    elif (tipo == 'Industrial'):
+        x2.append([ano,capt])
+    else:
+        x0.append([ano,capt])
+
+
+x1 = np.array(x1)
+x2= np.array(x2)
+x0 = np.array(x0)
+plt.scatter(x1[:,0], x1[:,1], c='b')
+plt.scatter(x2[:,0], x2[:,1], c='r')
+#plt.scatter(x0[:,0], x0[:,1], c='g')
+plt.show()
+
+
+nA = len(x1)
+nI = len(x2)
+num = max([nA,nI])
+
+
+ano_min = min([np.min(x1[:,0]),np.min(x2[:,0])])
+
+
+ano_max = max([np.max(x1[:,0]),np.max(x2[:,0])])
+
+list_ano = range(int(ano_min), int(ano_max + 1))
+
+n = len(list_ano)
+
+
+soma = np.zeros((n, 2))
+
+
+df_x1 = pd.DataFrame(x1, columns=['Ano', 'Captura']) #Artesanal
+df_x2 = pd.DataFrame(x2, columns=['Ano', 'Captura']) #Industrial
+df_x0 = pd.DataFrame(x0, columns=['Ano', 'Captura']) #Não especificado
+print(df_x1)
+print(df_x2)
+print(print(df_x0))
+
+
+df_x1=df_x1.drop_duplicates(subset='Captura')
+print(df_x1)
+
+
