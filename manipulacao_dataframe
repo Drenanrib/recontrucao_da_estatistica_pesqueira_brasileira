@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from openpyxl import workbook
 import numpy as np
-import tensorflow as tf
 
 
 data = pd.read_excel('Data\qReconstrucaoDoceMarinho22122023 (1).xlsx')
@@ -53,11 +52,8 @@ for i,ano in enumerate(x):
 
 
 x1 = np.array(x1)
-x1 = x1[~np.logical_and(x1[:, 0] >= 1990, x1[:, 0] <= 1995)]
 x2= np.array(x2)
-#x2 = x2[~np.logical_and(x1[:, 0] >= 1990, x2[:, 0] <= 1995)]
 x0 = np.array(x0)
-#x0 = np.unique(x0)
 plt.scatter(x1[:,0], x1[:,1], c='b')
 plt.scatter(x2[:,0], x2[:,1], c='r')
 #plt.scatter(x0[:,0], x0[:,1], c='g')
@@ -83,11 +79,8 @@ soma = np.zeros((n, 2))
 
 
 df_x1 = pd.DataFrame(x1, columns=['Ano', 'Captura']) #Artesanal
-df_x1=df_x1.drop_duplicates(subset='Captura')
 df_x2 = pd.DataFrame(x2, columns=['Ano', 'Captura']) #Industrial
-df_x2=df_x2.drop_duplicates(subset='Captura')
 df_x0 = pd.DataFrame(x0, columns=['Ano', 'Captura']) #Não especificado
-#df_x0= df_x0.drop_duplicates(subset='Captura')
 print(df_x1)
 print(df_x2)
 print(print(df_x0))
@@ -134,8 +127,8 @@ df_x2 = pd.DataFrame(x2, columns=['Ano', 'Captura']) #Industrial
 df_x0 = pd.DataFrame(x0, columns=['Ano', 'Captura']) #Não especificado
 
 df_x1=df_x1.drop_duplicates(subset='Captura')
-#df_x1 = df_x1.drop(df_x1[(df_x1['Ano'] >= 1990) & (df_x1['Ano'] <= 1995)].index)
 df_x2=df_x2.drop_duplicates(subset='Captura')
+
 x = np.array(df_x1['Ano'], dtype=np.float32).reshape(-1, 1)
 y = np.array(df_x1['Captura'], dtype=np.float32).reshape(-1, 1)
 
@@ -147,45 +140,3 @@ x_normalized = (x - x_mean) / x_std
 y_mean = np.mean(y)
 y_std = np.std(y)
 y_normalized = (y - y_mean) / y_std
-
-model = tf.keras.Sequential([
-    tf.keras.layers.Dense(128, activation='leaky_relu', input_shape=(1,)),
-    tf.keras.layers.Dense(64, activation='leaky_relu'),
-    tf.keras.layers.Dense(32, activation='leaky_relu'),
-    tf.keras.layers.Dense(1, activation='leaky_relu')
-
-])
-
-
-opt = tf.keras.optimizers.Adam(learning_rate=0.01)  # Learning rate = 0.01
-model.compile(optimizer=opt, loss='mse', metrics=['accuracy'])
-
-
-history = model.fit(x_normalized, y_normalized, epochs=400, verbose=0)
-
-
-plt.scatter(x_normalized, y_normalized, color='blue', label='Dados originais')
-plt.xlabel('Ano')
-plt.ylabel('Captura')
-plt.title('Predição')
-plt.plot(x_normalized, model.predict(x_normalized), color='red', label='Predição')
-plt.legend()
-plt.show()
-
-
-loss_values = history.history['loss']
-accuracy_values = history.history['accuracy']
-
-epochs = range(1, len(loss_values) + 1)
-
-plt.figure(figsize=(12, 6))
-
-# Plotando a perda
-plt.subplot(1, 2, 1)
-plt.plot(epochs, loss_values, 'b')
-plt.xlabel('Épocas')
-plt.ylabel('Loss')
-plt.title('Loss ao longo das épocas')
-
-model.save('model_architecture.h5')
-#model.save_weights('model_weights.h5')

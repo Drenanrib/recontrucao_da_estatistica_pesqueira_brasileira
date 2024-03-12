@@ -1,47 +1,54 @@
 ,Estado,Ano,Nome,Tipo,Captura
-132,Sergipe,1962,Camarão (de mar),Not specified,49.0
-133,Sergipe,1963,Camarão (de mar),Not specified,67.0
-134,Sergipe,1964,Camarão (de mar),Not specified,59.0
-135,Sergipe,1966,Camarão (de mar),Not specified,56.0
-136,Sergipe,1967,Camarão (de mar),Not specified,56.0
-137,Sergipe,1968,Camarão (de mar),Not specified,60.0
-138,Sergipe,1969,Camarão (de mar),Not specified,52.0
-139,Sergipe,1971,Camarão (de mar),Not specified,54.0
-140,Sergipe,1972,Camarão (de mar),Not specified,51.0
-141,Sergipe,1973,Camarão (de mar),Not specified,49.0
-142,Sergipe,1974,Camarão (de mar),Not specified,114.0
-143,Sergipe,1975,Camarão (de mar),Not specified,74.0
-144,Sergipe,1976,Camarão (de mar),Not specified,34.0
-145,Sergipe,1977,Camarão (de mar),Not specified,57.0
-146,Sergipe,1978,Camarão (de mar),Artisanal,63.0
-147,Sergipe,1979,Camarão (de mar),Artisanal,28.0
-148,Sergipe,1980,Camarão (de mar),Artisanal,94.0
-149,Sergipe,1981,Camarão (de mar),Artisanal,120.0
-150,Sergipe,1982,Camarão (de mar),Artisanal,164.0
-151,Sergipe,1983,Camarão (de mar),Artisanal,178.0
-152,Sergipe,1984,Camarão (de mar),Artisanal,189.0
-153,Sergipe,1985,Camarão (de mar),Artisanal,283.0
-154,Sergipe,1986,Camarão (de mar),Artisanal,309.0
-155,Sergipe,1987,Camarão (de mar),Artisanal,190.0
-156,Sergipe,1988,Camarão (de mar),Artisanal,223.0
-157,Sergipe,1989,Camarão (de mar),Artisanal,176.0
-158,Sergipe,1990,Camarão (de mar),Artisanal,303.0
-159,Sergipe,1991,Camarão (de mar),Artisanal,324.0
-160,Sergipe,1992,Camarão (de mar),Artisanal,379.0
-161,Sergipe,1993,Camarão (de mar),Artisanal,303.0
-162,Sergipe,1994,Camarão (de mar),Artisanal,433.5
-163,Sergipe,1995,Camarão (de mar),Artisanal,1454.0
-197,Sergipe,1981,Camarão (de mar),Industrial,58.0
-198,Sergipe,1982,Camarão (de mar),Industrial,48.0
-199,Sergipe,1983,Camarão (de mar),Industrial,770.0
-200,Sergipe,1984,Camarão (de mar),Industrial,772.0
-201,Sergipe,1985,Camarão (de mar),Industrial,740.0
-202,Sergipe,1986,Camarão (de mar),Industrial,458.0
-203,Sergipe,1987,Camarão (de mar),Industrial,1232.0
-204,Sergipe,1988,Camarão (de mar),Industrial,869.0
-205,Sergipe,1989,Camarão (de mar),Industrial,684.0
-206,Sergipe,1990,Camarão (de mar),Industrial,682.0
-207,Sergipe,1991,Camarão (de mar),Industrial,729.0
-208,Sergipe,1992,Camarão (de mar),Industrial,851.0
-209,Sergipe,1993,Camarão (de mar),Industrial,682.0
-210,Sergipe,1994,Camarão (de mar),Industrial,976.5
+427,Sergipe,1962,Bagre,Not specified,112.0
+428,Sergipe,1963,Bagre,Not specified,129.0
+429,Sergipe,1964,Bagre,Not specified,148.0
+430,Sergipe,1966,Bagre,Not specified,154.0
+431,Sergipe,1967,Bagre,Not specified,151.0
+432,Sergipe,1968,Bagre,Not specified,163.0
+433,Sergipe,1969,Bagre,Not specified,147.0
+434,Sergipe,1970,Bagre,Not specified,136.0
+435,Sergipe,1971,Bagre,Not specified,137.0
+436,Sergipe,1972,Bagre,Not specified,126.0
+437,Sergipe,1973,Bagre,Not specified,129.0
+438,Sergipe,1974,Bagre,Not specified,174.0
+439,Sergipe,1975,Bagre,Not specified,163.0
+440,Sergipe,1976,Bagre,Not specified,139.0
+441,Sergipe,1977,Bagre,Not specified,277.0
+442,Sergipe,1978,Bagre,Artisanal,247.0
+443,Sergipe,1979,Bagre,Artisanal,233.0
+444,Sergipe,1980,Bagre,Artisanal,289.0
+445,Sergipe,1981,Bagre,Artisanal,267.0
+446,Sergipe,1982,Bagre,Artisanal,285.0
+447,Sergipe,1983,Bagre,Artisanal,265.0
+448,Sergipe,1984,Bagre,Artisanal,276.0
+449,Sergipe,1985,Bagre,Artisanal,296.0
+450,Sergipe,1986,Bagre,Artisanal,238.0
+451,Sergipe,1987,Bagre,Artisanal,153.0
+452,Sergipe,1988,Bagre,Artisanal,146.0
+453,Sergipe,1989,Bagre,Artisanal,134.0
+454,Sergipe,1990,Bagre,Artisanal,168.0
+455,Sergipe,1991,Bagre,Artisanal,168.0
+456,Sergipe,1992,Bagre,Artisanal,168.0
+457,Sergipe,1993,Bagre,Artisanal,168.0
+458,Sergipe,1994,Bagre,Artisanal,168.0
+459,Sergipe,1995,Bagre,Artisanal,189.0
+460,Sergipe,1996,Bagre,Artisanal,64.5
+461,Sergipe,1997,Bagre,Artisanal,79.0
+462,Sergipe,1998,Bagre,Artisanal,32.5
+463,Sergipe,1999,Bagre,Artisanal,84.0
+464,Sergipe,2000,Bagre,Artisanal,122.0
+465,Sergipe,2001,Bagre,Artisanal,134.0
+466,Sergipe,2002,Bagre,Artisanal,285.0
+467,Sergipe,2003,Bagre,Artisanal,233.0
+468,Sergipe,2004,Bagre,Artisanal,174.0
+469,Sergipe,2005,Bagre,Artisanal,168.0
+470,Sergipe,2006,Bagre,Artisanal,99.5
+471,Sergipe,2007,Bagre,Artisanal,131.5
+472,Sergipe,1981,Bagre,Industrial,3.0
+473,Sergipe,1982,Bagre,Industrial,5.0
+474,Sergipe,1983,Bagre,Industrial,5.0
+475,Sergipe,1984,Bagre,Industrial,17.0
+476,Sergipe,1985,Bagre,Industrial,5.0
+477,Sergipe,1986,Bagre,Industrial,5.0
+478,Sergipe,1987,Bagre,Industrial,1.0
+479,Sergipe,1988,Bagre,Industrial,2.0
