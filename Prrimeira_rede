@@ -1,10 +1,12 @@
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from openpyxl import workbook
 import numpy as np
+import tensorflow as tf
 
 
-data = pd.read_excel('reconstrucao_estatistica_brasileira\qReconstrucaoDoceMarinho22122023 (1).xlsx')
+data = pd.read_excel('Data\qReconstrucaoDoceMarinho22122023 (1).xlsx')
 print(data)
 
 
@@ -28,7 +30,7 @@ especies_list= list
 
 selecao1 = (df_1['Estado'] == 'Sergipe') & (df_1['Nome'] == 'Camarão (de mar)') #& (df_1['Tipo'] == 'Artesanal')
 df= df_1[selecao1]
-df.to_csv('reconstrucao_estatistica_brasileira\Sergipe_Bagre.csv')
+df.to_csv('Data\Sergipe_Bagre.csv')
 
 
 x0 = []
@@ -91,3 +93,96 @@ df_x1=df_x1.drop_duplicates(subset='Captura')
 print(df_x1)
 
 
+
+nA = len(x1)
+nI = len(x2)
+num = max(nA, nI)
+
+ano_min = min(np.min(x1[:,0]), np.min(x2[:,0]))
+ano_max = max(np.max(x1[:,0]), np.max(x2[:,0]))
+
+list_ano = range(int(ano_min), int(ano_max + 1))
+n = len(list_ano)
+
+soma = np.zeros((n, 2))
+
+for i, ano in enumerate(list_ano):
+    if ano in x1[:,0] and ano in x2[:,0]:
+        idx1 = np.where(x1[:,0] == ano)[0][0]
+        idx2 = np.where(x2[:,0] == ano)[0][0]
+        soma[i,:] = [ano, x1[idx1,1] + x2[idx2,1]]
+
+
+    elif ano in x1[:,0] and ano not in x2[:,0]:
+        idx1 = np.where(x1[:,0] == ano)[0][0]
+        soma[i,:] = [ano, x1[idx1,1]]
+        print("1")
+
+    elif ano in x2[:,0] and ano not in x1[:,0]:
+        idx2 = np.where(x2[:,0] == ano)[0][0]
+        soma[i,:] = [ano, x2[idx2,1]]
+        print("2")
+    else:
+        print('Ano não cadastrado')
+
+df_x1 = pd.DataFrame(x1, columns=['Ano', 'Captura']) #Artesanal
+df_x2 = pd.DataFrame(x2, columns=['Ano', 'Captura']) #Industrial
+df_x0 = pd.DataFrame(x0, columns=['Ano', 'Captura']) #Não especificado
+
+df_x1=df_x1.drop_duplicates(subset='Captura')
+df_x2=df_x2.drop_duplicates(subset='Captura')
+
+x = np.array(df_x1['Ano'], dtype=np.float32).reshape(-1, 1)
+y = np.array(df_x1['Captura'], dtype=np.float32).reshape(-1, 1)
+
+
+x_mean = np.mean(x)
+x_std = np.std(x)
+x_normalized = (x - x_mean) / x_std
+
+y_mean = np.mean(y)
+y_std = np.std(y)
+y_normalized = (y - y_mean) / y_std
+
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(128, activation='leaky_relu', input_shape=(1,)),
+    tf.keras.layers.Dense(64, activation='leaky_relu'),
+    tf.keras.layers.Dense(32, activation='leaky_relu'),
+    tf.keras.layers.Dense(1, activation='leaky_relu')
+
+])
+
+
+opt = tf.keras.optimizers.Adam(learning_rate=0.01)  # Learning rate = 0.01
+model.compile(optimizer=opt, loss='mse', metrics=['accuracy'])
+
+
+history = model.fit(x_normalized, y_normalized, epochs=400, verbose=0)
+
+
+plt.scatter(x_normalized, y_normalized, color='blue', label='Dados originais')
+plt.xlabel('Ano')
+plt.ylabel('Captura')
+plt.title('Predição')
+plt.plot(x_normalized, model.predict(x_normalized), color='red', label='Predição')
+plt.legend()
+plt.show()
+
+
+loss_values = history.history['loss']
+accuracy_values = history.history['accuracy']
+
+epochs = range(1, len(loss_values) + 1)
+
+plt.figure(figsize=(12, 6))
+
+# Plotando a perda
+plt.subplot(1, 2, 1)
+plt.plot(epochs, loss_values, 'b')
+plt.xlabel('Épocas')
+plt.ylabel('Loss')
+plt.title('Loss ao longo das épocas')
+
+model.save('model_architecture.h5')
+model.save_weights('model_weights.h5')
